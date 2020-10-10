@@ -31,6 +31,8 @@ namespace Privilege.Database.DatabaseModels
         [MaxLength(5)]
         [Required]
         public string Gender { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public bool Married { get; set; }
     }
 }

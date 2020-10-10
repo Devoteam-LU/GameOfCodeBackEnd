@@ -31,7 +31,7 @@ namespace Privilege.Business.Services
             IEnumerable<string> interests = await ListByUserId(userId);
             if (interests.Any())
             {
-                IEnumerable<string> interestingUserIds = await DbContext.UserInterests.Where(e => interests.Contains(e.Interest)).Select(e => e.CreatedByUserId).Distinct().ToListAsync();
+                IEnumerable<string> interestingUserIds = await DbContext.UserInterests.Where(e => e.CreatedByUserId != userId && interests.Contains(e.Interest)).Select(e => e.CreatedByUserId).Distinct().ToListAsync();
                 IEnumerable<ProjectDto> borrowers = await DbContext.BorrowerProjects.Where(p => interestingUserIds.Contains(p.CreatedByUserId)).ProjectTo<ProjectDto>(Mapper.ConfigurationProvider).ToListAsync();
                 IEnumerable<ProjectDto> lenders = await DbContext.BorrowerProjects.Where(p => interestingUserIds.Contains(p.CreatedByUserId)).ProjectTo<ProjectDto>(Mapper.ConfigurationProvider).ToListAsync();
 
@@ -47,7 +47,7 @@ namespace Privilege.Business.Services
             IEnumerable<string> interests = await ListByUserId(userId);
             if (interests.Any())
             {
-                IEnumerable<string> interestingUserIds = await DbContext.UserInterests.Where(e => interests.Contains(e.Interest)).Select(e => e.CreatedByUserId).Distinct().ToListAsync();
+                IEnumerable<string> interestingUserIds = await DbContext.UserInterests.Where(e => e.CreatedByUserId != userId && interests.Contains(e.Interest)).Select(e => e.CreatedByUserId).Distinct().ToListAsync();
 
                 result = await DbContext.Users.Where(u => interestingUserIds.Contains(u.Id)).Select(u => new UserDto
                 {
