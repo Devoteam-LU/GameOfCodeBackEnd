@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Privilege.Database;
 
-namespace Privilege.Api.Migrations
+namespace Privilege.Database.Migrations
 {
     [DbContext(typeof(PrivilegeDbContext))]
-    partial class PrivilegeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201010092607_Initiate")]
+    partial class Initiate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -315,14 +317,8 @@ namespace Privilege.Api.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<double>("Budget")
                         .HasColumnType("float");
-
-                    b.Property<string>("CreatedByUserId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("CreationDate")
                         .HasColumnType("datetimeoffset");
@@ -338,8 +334,6 @@ namespace Privilege.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
-
                     b.ToTable("BorrowerProjects");
                 });
 
@@ -353,9 +347,6 @@ namespace Privilege.Api.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<long>("BorrowerProjectId")
                         .HasColumnType("bigint");
 
@@ -364,9 +355,6 @@ namespace Privilege.Api.Migrations
 
                     b.Property<int>("ContractStatusId")
                         .HasColumnType("int");
-
-                    b.Property<string>("CreatedByUserId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("CreationDate")
                         .HasColumnType("datetimeoffset");
@@ -381,8 +369,6 @@ namespace Privilege.Api.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("BorrowerProjectId");
 
@@ -417,14 +403,8 @@ namespace Privilege.Api.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<double>("Budget")
                         .HasColumnType("float");
-
-                    b.Property<string>("CreatedByUserId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("CreationDate")
                         .HasColumnType("datetimeoffset");
@@ -439,8 +419,6 @@ namespace Privilege.Api.Migrations
                         .HasMaxLength(250);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("LenderProjects");
                 });
@@ -472,9 +450,6 @@ namespace Privilege.Api.Migrations
 
                     b.Property<double>("AvgSavingsOver5Years")
                         .HasColumnType("float");
-
-                    b.Property<string>("CreatedByUserId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("CreationDate")
                         .HasColumnType("datetimeoffset");
@@ -547,12 +522,6 @@ namespace Privilege.Api.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CreatedByUserId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTimeOffset>("CreationDate")
                         .HasColumnType("datetimeoffset");
 
@@ -562,8 +531,6 @@ namespace Privilege.Api.Migrations
                         .HasMaxLength(250);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("UserInterests");
                 });
@@ -619,19 +586,8 @@ namespace Privilege.Api.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Privilege.Database.DatabaseModels.BorrowerProject", b =>
-                {
-                    b.HasOne("Privilege.Database.DatabaseModels.ApplicationUser", null)
-                        .WithMany("BorrowerProjects")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
             modelBuilder.Entity("Privilege.Database.DatabaseModels.Contract", b =>
                 {
-                    b.HasOne("Privilege.Database.DatabaseModels.ApplicationUser", null)
-                        .WithMany("Contracts")
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("Privilege.Database.DatabaseModels.BorrowerProject", "BorrowerProject")
                         .WithMany("Contracts")
                         .HasForeignKey("BorrowerProjectId")
@@ -649,20 +605,6 @@ namespace Privilege.Api.Migrations
                         .HasForeignKey("LenderProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Privilege.Database.DatabaseModels.LenderProject", b =>
-                {
-                    b.HasOne("Privilege.Database.DatabaseModels.ApplicationUser", null)
-                        .WithMany("LenderProjects")
-                        .HasForeignKey("ApplicationUserId");
-                });
-
-            modelBuilder.Entity("Privilege.Database.DatabaseModels.UserInterest", b =>
-                {
-                    b.HasOne("Privilege.Database.DatabaseModels.ApplicationUser", null)
-                        .WithMany("UserInterests")
-                        .HasForeignKey("ApplicationUserId");
                 });
 #pragma warning restore 612, 618
         }

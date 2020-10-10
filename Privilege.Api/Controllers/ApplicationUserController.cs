@@ -71,7 +71,10 @@ namespace Privilege.Api.Controllers
             var applicationUser = new ApplicationUser()
             {
                 UserName = model.UserName,
-                Email = model.Email
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                DateOfBirth = model.DateOfBirth,
             };
 
             try

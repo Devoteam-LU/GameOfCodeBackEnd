@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Privilege.Business.Models;
+using Privilege.Database.DatabaseModels;
 
 namespace Privilege.Business.Mapper
 {
@@ -6,6 +8,7 @@ namespace Privilege.Business.Mapper
     {
         public MappingProfile()
         {
+            CreateMap<BorrowerProject, ProjectDto>().ReverseMap();
         }
     }
 }

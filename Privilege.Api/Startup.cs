@@ -19,6 +19,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Privilege.Business.Mapper;
 using Privilege.Business.Models;
+using Privilege.Business.Services;
 using Privilege.Database;
 using Privilege.Database.DatabaseModels;
 
@@ -124,6 +125,10 @@ namespace Privilege.Api
             });
 
             services.Configure<ApiParameters>(Configuration.GetSection("ApplicationSettings"));
+
+            services.AddTransient<ContractService>();
+            services.AddTransient<LenderProjectService>();
+            services.AddTransient<BorrowerProjectService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

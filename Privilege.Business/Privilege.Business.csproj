@@ -8,4 +8,8 @@
     <PackageReference Include="AutoMapper" Version="10.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Privilege.Database\Privilege.Database.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Privilege.Database;
 
 namespace Privilege.Api.Migrations
 {
     [DbContext(typeof(PrivilegeDbContext))]
-    partial class PrivilegeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201010080828_Requireds")]
+    partial class Requireds
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
