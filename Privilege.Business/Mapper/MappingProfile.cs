@@ -9,6 +9,7 @@ namespace Privilege.Business.Mapper
         public MappingProfile()
         {
             CreateMap<BorrowerProject, ProjectDto>().ReverseMap();
+            CreateMap<Contract, ContractDto>().ReverseMap();
         }
     }
 }

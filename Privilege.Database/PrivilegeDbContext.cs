@@ -19,6 +19,7 @@ namespace Privilege.Database
         public virtual DbSet<Contract> Contracts { get; set; }
         public virtual DbSet<UserInterest> UserInterests { get; set; }
         public virtual DbSet<UserDetail> UserDetails { get; set; }
+        public virtual DbSet<UserDetailTrain> UserDetailTrains { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

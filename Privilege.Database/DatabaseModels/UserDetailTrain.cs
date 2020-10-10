@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Privilege.Database.DatabaseModels
 {
-    public class UserDetail : BaseModel
+    public class UserDetailTrain : BaseModel
     {
         public int Age { get; set; }
         public int Dependants { get; set; }
@@ -32,6 +32,5 @@ namespace Privilege.Database.DatabaseModels
         [Required]
         public string Gender { get; set; }
         public bool Married { get; set; }
-        public string UserId { get; set; }
     }
 }

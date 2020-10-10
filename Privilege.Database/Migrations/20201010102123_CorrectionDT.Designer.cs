@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Privilege.Database;
 
 namespace Privilege.Database.Migrations
 {
     [DbContext(typeof(PrivilegeDbContext))]
-    partial class PrivilegeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201010102123_CorrectionDT")]
+    partial class CorrectionDT
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -318,10 +320,6 @@ namespace Privilege.Database.Migrations
                     b.Property<double>("Budget")
                         .HasColumnType("float");
 
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -357,10 +355,6 @@ namespace Privilege.Database.Migrations
 
                     b.Property<int>("ContractStatusId")
                         .HasColumnType("int");
-
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -412,10 +406,6 @@ namespace Privilege.Database.Migrations
                     b.Property<double>("Budget")
                         .HasColumnType("float");
 
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -461,10 +451,6 @@ namespace Privilege.Database.Migrations
                     b.Property<double>("AvgSavingsOver5Years")
                         .HasColumnType("float");
 
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -523,109 +509,10 @@ namespace Privilege.Database.Migrations
 
                     b.Property<double>("SocialStability")
                         .HasColumnType("float");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("UserDetails");
-                });
-
-            modelBuilder.Entity("Privilege.Database.DatabaseModels.UserDetailTrain", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<double>("AvgIncomeOver10Years")
-                        .HasColumnType("float");
-
-                    b.Property<double>("AvgIncomeOver2Years")
-                        .HasColumnType("float");
-
-                    b.Property<double>("AvgIncomeOver5Years")
-                        .HasColumnType("float");
-
-                    b.Property<double>("AvgSavingsOver10Years")
-                        .HasColumnType("float");
-
-                    b.Property<double>("AvgSavingsOver2Years")
-                        .HasColumnType("float");
-
-                    b.Property<double>("AvgSavingsOver5Years")
-                        .HasColumnType("float");
-
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double>("CreditScore")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Debt")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Dependants")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Education")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EmploymentType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Gender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(5)")
-                        .HasMaxLength(5);
-
-                    b.Property<double>("Income")
-                        .HasColumnType("float");
-
-                    b.Property<int>("JobClass")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Lending")
-                        .HasColumnType("float");
-
-                    b.Property<bool>("Married")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("NumberOfBorrows")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfCars")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfLends")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberOfProperties")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Savings")
-                        .HasColumnType("float");
-
-                    b.Property<double>("SocialExposure")
-                        .HasColumnType("float");
-
-                    b.Property<double>("SocialQuality")
-                        .HasColumnType("float");
-
-                    b.Property<double>("SocialStability")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserDetailTrains");
                 });
 
             modelBuilder.Entity("Privilege.Database.DatabaseModels.UserInterest", b =>
@@ -635,10 +522,6 @@ namespace Privilege.Database.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -646,9 +529,6 @@ namespace Privilege.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(250)")
                         .HasMaxLength(250);
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

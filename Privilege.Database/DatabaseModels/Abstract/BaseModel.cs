@@ -7,7 +7,8 @@ namespace Privilege.Database.DatabaseModels.Abstract
     {
         [Key]
         public long Id { get; set; }
-
-        public DateTimeOffset CreationDate { get; set; }
+        [Required]
+        public string CreatedByUserId { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }

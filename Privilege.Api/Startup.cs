@@ -78,6 +78,16 @@ namespace Privilege.Api
                 };
             });
 
+            services.AddCors(c =>
+            {
+                c.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyMethod();
+                    builder.AllowAnyHeader();
+                });
+            });
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings.

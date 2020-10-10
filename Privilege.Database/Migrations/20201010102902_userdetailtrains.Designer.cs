@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Privilege.Database;
 
 namespace Privilege.Database.Migrations
 {
     [DbContext(typeof(PrivilegeDbContext))]
-    partial class PrivilegeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201010102902_userdetailtrains")]
+    partial class userdetailtrains
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -318,10 +320,6 @@ namespace Privilege.Database.Migrations
                     b.Property<double>("Budget")
                         .HasColumnType("float");
 
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -357,10 +355,6 @@ namespace Privilege.Database.Migrations
 
                     b.Property<int>("ContractStatusId")
                         .HasColumnType("int");
-
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -412,10 +406,6 @@ namespace Privilege.Database.Migrations
                     b.Property<double>("Budget")
                         .HasColumnType("float");
 
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -460,10 +450,6 @@ namespace Privilege.Database.Migrations
 
                     b.Property<double>("AvgSavingsOver5Years")
                         .HasColumnType("float");
-
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
@@ -560,10 +546,6 @@ namespace Privilege.Database.Migrations
                     b.Property<double>("AvgSavingsOver5Years")
                         .HasColumnType("float");
 
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
@@ -634,10 +616,6 @@ namespace Privilege.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CreatedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");

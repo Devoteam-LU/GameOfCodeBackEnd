@@ -8,5 +8,6 @@ namespace Privilege.Database.DatabaseModels
         [Required]
         [MaxLength(250)]
         public string Interest { get; set; }
+        public string UserId { get; set; }
     }
 }
