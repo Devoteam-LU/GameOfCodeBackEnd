@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Authentication;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,10 +38,24 @@ namespace Privilege.Api.Controllers
         private SignInManager<ApplicationUser> SingInManager { get; }
         private UserManager<ApplicationUser> UserManager { get; }
 
+        [HttpGet]
+        [Route("UserProfile")]
+        public async Task<UserDto> GetUserProfile()
+        {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await UserManager.FindByIdAsync(userId);
+            return new UserDto
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName
+            };
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [Route("Login")]
-        public async Task<IActionResult> Login(LoginDto model)
+        public async Task<string> Login(LoginDto model)
         {
             var user = await UserManager.FindByNameAsync(model.Username);
             if (user != null && await UserManager.CheckPasswordAsync(user, model.Password))
@@ -57,10 +72,10 @@ namespace Privilege.Api.Controllers
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
                 var token = tokenHandler.WriteToken(securityToken);
-                return Ok(new { token });
+                return token;
             }
             else
-                return BadRequest(new { message = "Username or password is incorrect." });
+                throw new InvalidCredentialException();
         }
 
         [HttpPost]

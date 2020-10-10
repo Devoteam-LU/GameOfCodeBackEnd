@@ -139,6 +139,7 @@ namespace Privilege.Api
             services.AddTransient<ContractService>();
             services.AddTransient<LenderProjectService>();
             services.AddTransient<BorrowerProjectService>();
+            services.AddTransient<UserInterestService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

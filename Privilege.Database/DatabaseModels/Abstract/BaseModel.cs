@@ -8,6 +8,7 @@ namespace Privilege.Database.DatabaseModels.Abstract
         [Key]
         public long Id { get; set; }
         [Required]
+        [MaxLength(450)]
         public string CreatedByUserId { get; set; }
         public DateTime CreationDate { get; set; }
     }

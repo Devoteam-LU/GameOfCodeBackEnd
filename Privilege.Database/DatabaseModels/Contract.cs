@@ -7,9 +7,9 @@ namespace Privilege.Database.DatabaseModels
 {
     public class Contract : BaseModel
     {
-        public long BorrowerProjectId { get; set; }
+        public long? BorrowerProjectId { get; set; }
         public int ContractStatusId { get; set; }
-        public long LenderProjectId { get; set; }
+        public long? LenderProjectId { get; set; }
         public DateTimeOffset Expiration { get; set; }
         public string Clause { get; set; }
         public double Amount { get; set; }
@@ -17,7 +17,6 @@ namespace Privilege.Database.DatabaseModels
 
         #region Virtuals
 
-        [Required]
         [ForeignKey(nameof(BorrowerProjectId))]
         public virtual BorrowerProject BorrowerProject { get; set; }
 
@@ -25,9 +24,12 @@ namespace Privilege.Database.DatabaseModels
         [ForeignKey(nameof(ContractStatusId))]
         public virtual ContractStatus ContractStatus { get; set; }
 
-        [Required]
         [ForeignKey(nameof(LenderProjectId))]
         public virtual LenderProject LenderProject { get; set; }
+
+        [Required]
+        [ForeignKey(nameof(BaseModel.CreatedByUserId))]
+        public virtual ApplicationUser User { get; set; }
 
         #endregion Virtuals
     }
