@@ -53,6 +53,8 @@ namespace Privilege.Business.Services
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     Id = u.Id,
+                    CreditScore = u.CreditScore,
+                    Apy = u.Apy,
                     Interests = u.UserInterests.Select(ui => ui.Interest)
                 }).ToListAsync();
             }

@@ -12,6 +12,8 @@ namespace Privilege.Database.DatabaseModels
         [Required]
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public int CreditScore { get; set; }
+        public double Apy { get; set; }
 
         public virtual ICollection<BorrowerProject> BorrowerProjects { get; set; } = new HashSet<BorrowerProject>();
         public virtual ICollection<LenderProject> LenderProjects { get; set; } = new HashSet<LenderProject>();

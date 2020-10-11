@@ -46,6 +46,31 @@ namespace Privilege.Business.Services
             await DbContext.SaveChangesAsync();
         }
 
+        public async Task<UserBorrowLendSituationDto> UserSituationAsync(string userId)
+        {
+            return new UserBorrowLendSituationDto
+            {
+                TotalBorrowingAmount = await DbContext.Contracts.Where(c => c.CreatedByUserId == userId && c.LenderProjectId.HasValue).SumAsync(c => c.Amount),
+                TotalBorrowingWithInterestRate = await DbContext.Contracts.Where(c => c.CreatedByUserId == userId && c.LenderProjectId.HasValue).SumAsync(c => c.Amount * (1 + c.InterestRate)),
+                TotalLendingAmount = await DbContext.Contracts.Where(c => c.CreatedByUserId == userId && c.BorrowerProjectId.HasValue).SumAsync(c => c.Amount),
+                TotalLendingWithInterestRate = await DbContext.Contracts.Where(c => c.CreatedByUserId == userId && c.BorrowerProjectId.HasValue).SumAsync(c => c.Amount * (1 + c.InterestRate)),
+            };
+        }
+
+        public async Task<IEnumerable<ContractDto>> ListByUserIdAsync(string userId)
+        {
+            List<Contract> contracts = await DbContext.Contracts.Include(c => c.User).Include(c => c.BorrowerProject).Include(c => c.LenderProject).Where(c => c.CreatedByUserId == userId).OrderByDescending(c => c.CreationDate).ToListAsync();
+            var result = Mapper.Map<List<ContractDto>>(contracts);
+            result.ForEach(r =>
+            {
+                var contract = contracts.First(c => c.Id == r.Id);
+                r.ProjectOwnerLastName = contract?.BorrowerProject?.User?.LastName ?? contract?.LenderProject?.User?.LastName;
+                r.ProjectOwnerFirstName = contract?.BorrowerProject?.User?.FirstName ?? contract?.LenderProject?.User?.FirstName;
+                r.ProjectTitle = contract?.BorrowerProject?.Title ?? contract?.LenderProject?.Title;
+            });
+            return result;
+        }
+
         public async Task DeleteAsync(long id)
         {
             Contract contract = await DbContext.Contracts.FirstOrDefaultAsync(e => e.Id == id);

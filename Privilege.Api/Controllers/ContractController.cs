@@ -43,5 +43,17 @@ namespace Privilege.Api.Controllers
         {
             await ContractService.DeleteAsync(id);
         }
+
+        [HttpGet("UserSituation")]
+        public async Task<UserBorrowLendSituationDto> UserSituationAsync()
+        {
+            return await ContractService.UserSituationAsync(User.Claims.First(c => c.Type == "UserID").Value);
+        }
+
+        [HttpGet("ListByUserId")]
+        public async Task<IEnumerable<ContractDto>> ListByUserIdAsync()
+        {
+            return await ContractService.ListByUserIdAsync(User.Claims.First(c => c.Type == "UserID").Value);
+        }
     }
 }

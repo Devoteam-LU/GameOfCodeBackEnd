@@ -12,7 +12,10 @@ namespace Privilege.Database.DatabaseModels
         public string Title { get; set; }
         [Required]
         public string Description { get; set; }
+        public string ImageUrl { get; set; }
         public double Budget { get; set; }
+        public double InterestRate { get; set; }
+        public bool IsInterestRateFlexible { get; set; }
 
         public virtual ICollection<Contract> Contracts { get; set; } = new HashSet<Contract>();
 
